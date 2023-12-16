@@ -14,7 +14,59 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+  let output = [];
+  let ans = {};
+  if(transactions.length===0){
+    return [];
+  }
+  for (let i of transactions){
+   const cat = i.category;
+    if(ans[cat]){
+      ans[cat] += i.price;
+    }
+    else{
+      ans[cat] = i.price;
+    }
+
+  }
+  for(let i in ans) {
+    output.push(
+      {
+        category: i,
+        totalSpent: ans[i],
+      }
+    );
+  }
+  return output;
+
+
+  // if (transactions.length === 0) {
+  //   return [];
+  // }
+  // let ans = [];
+  // // Store all the categories with their total price.
+  // let categoryWithAmount = {};
+  // for (let transaction of transactions) {
+  //   // Get the category of current item.
+  //   const category = transaction.category;
+  //   // If the category is repeated, increment the total amount.
+  //   if (categoryWithAmount[category]) {
+  //     categoryWithAmount[category] += transaction.price;
+  //   } else {
+  //     // If the category comes first time, update the amount with current price.
+  //     categoryWithAmount[category] = transaction.price;
+  //   }
+  // }
+  // // Iterate over all the categories, create an object of the category name with total amount
+  // // and add it to the ans array.
+  // for (let category in categoryWithAmount) {
+  //   ans.push({
+  //     category: category,
+  //     totalSpent: categoryWithAmount[category],
+  //   });
+  // }
+  // return ans;
+
 }
 
 module.exports = calculateTotalSpentByCategory;
